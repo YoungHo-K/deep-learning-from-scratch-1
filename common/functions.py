@@ -1,8 +1,15 @@
 import numpy as np
 
 
-def sum_of_squares_error(y, t):
-    return 0.5 * np.sum((y - t) ** 2)
+def relu(x):
+    return np.maximum(x, 0)
+
+
+def softmax(x):
+    x_exp = np.exp(x - np.max(x))
+    exp_sum = np.sum(x_exp)
+
+    return x_exp / exp_sum
 
 
 def cross_entropy_error(y, t):
@@ -12,4 +19,6 @@ def cross_entropy_error(y, t):
 
     batch_size = y.shape[0]
     delta = 1e-7
+
     return -np.sum(t * np.log(y + delta)) / batch_size
+
