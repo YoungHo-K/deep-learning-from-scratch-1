@@ -12,10 +12,10 @@ train_loss_list = []
 train_acc_list = []
 test_acc_list = []
 
-iters_num = 20
+iters_num = 10000
 train_size = x_train.shape[0]
-batch_size = 16
-learning_rate = 0.1
+batch_size = 100
+learning_rate = 0.01
 iter_per_epoch = max(train_size / batch_size, 1)
 
 
@@ -26,8 +26,7 @@ for index in tqdm.tqdm(range(iters_num)):
     x_batch = x_train[batch_mask]
     y_batch = y_train[batch_mask]
 
-    grad = network.numerical_gradient(x_batch, y_batch)
-
+    grad = network.gradient(x_batch, y_batch)
     for key in ("W1", "b1", "W2", "b2"):
         network.params[key] -= learning_rate * grad[key]
 
