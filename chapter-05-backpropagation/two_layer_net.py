@@ -1,7 +1,5 @@
 from collections import OrderedDict
 
-import numpy as np
-
 from common.layers import *
 from common.functions import *
 from common.gradient import numerical_gradient
