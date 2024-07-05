@@ -14,3 +14,15 @@ def smooth_curve(x):
     y = np.convolve(w / w.sum(), s, mode='valid')
 
     return y[5: len(y) - 5]
+
+
+def shuffle_dataset(x, t):
+    permutation = np.random.permutation(x.shape[0])
+    if x.ndim == 2:
+        x = x[permutation, :]
+    else:
+        x = x[permutation, :, :, :]
+
+    t = t[permutation]
+
+    return x, t
